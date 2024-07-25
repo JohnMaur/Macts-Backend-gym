@@ -56,7 +56,6 @@
 //   console.log(`Server running on port ${port}`);
 // });
 
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
@@ -139,7 +138,7 @@ app.post('/tagData', async (req, res) => {
       };
 
       // Perform the database insert or update
-      const historyResponse = await axios.post('http://localhost:2525/gym_history', gymHistory);
+      const historyResponse = await axios.post('https://macts-backend-mobile-app-production.up.railway.app/gym_history', gymHistory);
       console.log(`Tap status: ${historyResponse.data.tapStatus}`); // Log the tap status ("In" or "Out")
 
       io.emit('tagData', { user_id: matchedStudent.user_id, tagData, tapStatus: historyResponse.data.tapStatus, excessiveTap: false });
